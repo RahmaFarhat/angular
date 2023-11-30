@@ -1,0 +1,60 @@
+<form [formGroup]="fg">
+    <label>numap</label>
+    <input type="text" formControlName="numap"(input)="onInput($event)" required>
+    <div *ngIf="fg.get('numap')?.hasError('required') && fg.get('numap')?.touched">
+        Numap is required!
+      </div>
+    
+    <label>FloorNub</label>
+    <input type="text" formControlName="FloorNub" (input)="onInput($event)" required>
+    <div *ngIf="fg.get('FloorNub')?.hasError('required') && fg.get('FloorNub')?.touched">
+        FloorNub is required!
+      </div>
+
+    <label>surface</label>
+    <input type="text" formControlName="surface">
+    <div *ngIf="fg.get('surface')?.hasError('required') && fg.get('surface')?.touched">
+        Surface is required!
+      </div>
+    <label>terrace</label>
+    <div formGroupName="terrace">
+      <label>
+        <input type="radio" formControlName="selected" [value]="true"> Yes
+      </label>
+      <label>
+        <input type="radio" formControlName="selected" [value]="false"> No
+      </label>
+    </div>
+  
+    <label >surfaceterrace</label>
+    <input [disabled]="!fg.get('terrace.selected')?.value" type="text" formControlName="surfaceterrace">
+    <div *ngIf="fg.get('surfaceterrace')?.hasError('required') && fg.get('surfaceterrace')?.touched">
+        surfaceterrace is required!
+      </div>
+    <label>cat</label>
+    <div formGroupName="cat">
+      <label>
+        <input type="radio" formControlName="selected" [value]="'S+1'"> S+1
+      </label>
+      <label>
+        <input type="radio" formControlName="selected" [value]="'S+2'"> S+2
+      </label>
+      <label>
+        <input type="radio" formControlName="selected" [value]="'S+3'"> S+3
+      </label>
+    </div>
+  
+    <label>desc</label>
+    <input type="text" formControlName="desc">
+    <div *ngIf="fg.get('desc')?.hasError('required') && fg.get('desc')?.touched">
+        desc required!
+    </div>
+    <label>residence</label>
+    <input type="text" formControlName="residence">
+  <div *ngIf="fg.get('residence')?.hasError('required') && fg.get('residence')?.touched">
+    residence required!
+    </div>
+    <input [disabled]="fg.invalid" type="submit" value="save" (click)="showForm()">
+
+  </form>
+  
